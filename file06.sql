@@ -1,0 +1,10 @@
+use aula01;
+alter table produtos add column prazo_entrega varchar(10);
+alter table produtos drop column prazo_entrega;
+alter table produtos drop column descricao;
+alter table produtos add column descricao char(20) check(descricao <>"");
+alter table produtos add check (preco <>"");
+alter table produtos add foreign key (cod_produtos) references grupo_produtos(codigo);
+alter table vendas add constraint vendas_fk foreign key (cod_produtos) references produto(codigo);
+alter table produtos add constraint produtos_pk primary key (codigo);
+alter table produtos drop constraint produtos_pk;
